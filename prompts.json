@@ -1,0 +1,13 @@
+{
+  "testing_setup": "Set up a pytest framework for this Flask app without changing application code. Add tests/, conftest.py with a test client fixture, and baseline tests for every existing route.",
+  "unique_solution": "Add a count_solutions(board, limit=2) backtracking function and only remove a cell during puzzle generation if the puzzle still has exactly one solution.",
+  "difficulty_levels": "Map difficulty names to target clue counts (easy 40, medium 32, hard 26) and validate the incoming difficulty against the allowed set, defaulting to medium.",
+  "session_refactor": "Replace the module-level state dict with Flask session storage, explaining why globals break with concurrent users and multiple tabs.",
+  "event_delegation": "Attach a single input listener to the board container and use event delegation instead of one listener per cell.",
+  "top10_localstorage": "Write saveScore and renderLeaderboard functions that keep the fastest 10 entries sorted ascending by time in localStorage, wrapped in try/catch, with the player name escaped before DOM insertion.",
+  "alternating_boxes": "Alternate the background of each 3x3 box using a class applied per cell from box index parity computed in JS, with colors as CSS custom properties so it works in both themes.",
+  "dark_mode": "Add a dark mode toggle that sets data-theme on <html>, persists to localStorage, and respects prefers-color-scheme on first load.",
+  "accessibility_audit": "Audit against WCAG 2.1 AA: ARIA labels per cell, arrow-key navigation, aria-live status regions, visible focus rings, 4.5:1 contrast, and no color-only state.",
+  "explain_before_accept": "Explain what this suggested code does line by line, and tell me what tradeoffs or edge cases it introduces, before I accept it.",
+  "rejected_client_side_solution": "REJECTED: caching the puzzle solution in localStorage for faster hints. Any player could read the full answer from DevTools. Solution stays server-side in the Flask session."
+}

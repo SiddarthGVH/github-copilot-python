@@ -1,18 +1,79 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sudoku Game</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <h1>Sudoku Game</h1>
-  <div id="sudoku-board"></div>
-  <div class="controls">
-    <button id="new-game">New Game</button>
-    <button id="check-solution">Check Solution</button>
-    <span id="message"></span>
-  </div>
+  <main class="game-shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Daily focus</p>
+        <h1>Sudoku</h1>
+      </div>
+      <button id="theme-toggle" class="secondary-button" type="button" aria-pressed="false">Dark mode</button>
+    </header>
+
+    <section class="game-panel" aria-label="Sudoku game">
+      <div class="game-toolbar">
+        <label for="difficulty">Difficulty
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+        <button id="new-game" class="primary-button" type="button">New Game</button>
+        <button id="hint" class="secondary-button" type="button">Hint</button>
+        <button id="check-solution" class="secondary-button" type="button">Check</button>
+        <div class="stat" aria-live="polite"><span>Time</span><strong id="timer">00:00</strong></div>
+        <div class="stat" aria-live="polite"><span>Hints</span><strong id="hints-used">0</strong></div>
+      </div>
+
+      <div id="sudoku-board" class="sudoku-board" role="grid" aria-label="Sudoku puzzle"></div>
+      <div id="number-tracker" class="number-tracker" aria-label="Number tracker">
+        <button type="button" data-number="1" aria-pressed="false"><span>1</span><span class="number-count">0</span></button>
+        <button type="button" data-number="2" aria-pressed="false"><span>2</span><span class="number-count">0</span></button>
+        <button type="button" data-number="3" aria-pressed="false"><span>3</span><span class="number-count">0</span></button>
+        <button type="button" data-number="4" aria-pressed="false"><span>4</span><span class="number-count">0</span></button>
+        <button type="button" data-number="5" aria-pressed="false"><span>5</span><span class="number-count">0</span></button>
+        <button type="button" data-number="6" aria-pressed="false"><span>6</span><span class="number-count">0</span></button>
+        <button type="button" data-number="7" aria-pressed="false"><span>7</span><span class="number-count">0</span></button>
+        <button type="button" data-number="8" aria-pressed="false"><span>8</span><span class="number-count">0</span></button>
+        <button type="button" data-number="9" aria-pressed="false"><span>9</span><span class="number-count">0</span></button>
+      </div>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="scores-panel" aria-labelledby="scores-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Your best runs</p>
+        <h2 id="scores-heading">Top 10 Fastest Times</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Rank</th><th scope="col">Name</th><th scope="col">Time</th><th scope="col">Difficulty</th><th scope="col">Hints</th></tr>
+          </thead>
+          <tbody id="leaderboard-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <dialog id="win-modal" aria-labelledby="win-heading">
+      <form id="win-form" method="dialog">
+        <p class="eyebrow">Puzzle complete</p>
+        <h2 id="win-heading">Congratulations!</h2>
+        <p id="win-summary"></p>
+        <label for="player-name">Your name
+          <input id="player-name" name="name" maxlength="24" autocomplete="name" required>
+        </label>
+        <button class="primary-button" type="submit">Save score</button>
+      </form>
+    </dialog>
+  </main>
   <script src="/static/main.js"></script>
 </body>
 </html>
